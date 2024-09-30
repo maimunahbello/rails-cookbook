@@ -1,3 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :bookmark
+  has_many :bookmarks, dependent: :destroy
+  has_many :recipes, through: :bookmarks
 end

@@ -1,3 +1,4 @@
 class Recipe < ApplicationRecord
-  belongs_to :bookmark
+  has_many :bookmarks
+  has_many :categories, through: :bookmarks
 end
