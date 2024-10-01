@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'categories#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -7,5 +8,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :categories, except: %i[edit update]
+  resources :categories, except: %i[edit update] do
+  resources :bookmarks, only: %i[new create]
+  end
+  resources :bookmarks, only: %i[destroy]
 end
