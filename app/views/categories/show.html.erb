@@ -1,9 +1,14 @@
-<div class="card bg-dark text-white">
-  <%= image_tag 'table.jpeg', class:"card-img" %>
-  <div class="card-img-overlay">
-    <h4 class="card-title"><%= @category.name %></h4>
-  </div>
-</div>
+    <% if @category.photo.attached? %>
+        <div class="card bg-dark text-white", style ="background-image: url('<%=cl_image_path @category.photo.key %>')">
+          <div class="card-img-overlay">
+            <h4 class="card-title"><%= @category.name %></h4>
+          </div>
+        </div>
+    <% else %>
+      <div class="card bg-dark text-white", style ="background-image: url('<%= image_path "food.jpeg"%>')">
+       <h4 class="card-title"><%= @category.name %></h4>
+      </div>
+    <% end %>
 
 <div class ="title-top">
 <h2> Recipes</h2>
@@ -30,7 +35,7 @@
      <div class="card-description">
 
       <h2><%= bookmark.recipe.name %></h2>
-      <p><%= bookmark.recipe.description %></p>
+      <p><%= bookmark.recipe.description.truncate(400) %></p>
      </div>
 
      <div class ="card-trip-infos">
